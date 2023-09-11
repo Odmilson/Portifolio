@@ -46,3 +46,24 @@ portfolioButton.addEventListener('click', () => {
 
     portfolioMore = !portfolioMore;
 });
+
+const buttons = document.querySelectorAll('.button-portfolio');
+const imageTables = document.querySelector('.image-tables');
+const imageTableWidth = document.querySelector('.image-table').clientWidth;
+const buttonPortfolioText = document.querySelectorAll('.button-portfolio__text');
+
+buttons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        buttons.forEach((btn, index) => {
+            btn.classList.remove('button-portfolio--active');
+            buttonPortfolioText[index].classList.remove('button-portfolio__text--active');
+        });
+
+        button.classList.add('button-portfolio--active');
+        buttonPortfolioText[index].classList.add('button-portfolio__text--active');
+
+        const translateX = -index * imageTableWidth;
+
+        imageTables.style.transform = `translateX(${translateX}px)`;
+    });
+});
